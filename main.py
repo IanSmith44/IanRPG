@@ -10,6 +10,8 @@ Commands:
 def showStatus():
     print('---------------------------')
     print('You are in the ' + currentRoom)
+    if currentRoom == 'sewers':
+        print('The ground to the east looks soft enough to dig if you have a shovel.')
     print('Inventory : ' + str(inventory))
     if "item" in rooms[currentRoom]:
         print('You see a ' + rooms[currentRoom]['item'])
@@ -18,33 +20,51 @@ def showStatus():
 inventory = []
 
 rooms = {
-    'Kitchen' : { 
-        'east' : 'Living Room'
+    'kitchen' : { 
+        'east' : 'living room'
     },
-    'Living Room' : {
-        'west' : 'Kitchen',
-        'north' : 'Garage',
-        'east' : 'Front Door',
-        'south' : 'Stairs'
+    'living room' : {
+        'west' : 'kitchen',
+        'north' : 'garage',
+        'east' : 'front door',
+        'south' : 'stairs'
     },
-    'Garage' : {
-        'south' : 'Living Room'
+    'garage' : {
+        'south' : 'living room',
+        'item' : 'shovel'
     },
-    'Stairs' : {
-        'north' : 'Living Room'
+    'stairs' : {
+        'north' : 'living room'
     },
-    'Front Door' : {
-        'west' : 'Living Room',
-        'east' : 'Front Yard'
+    'front door' : {
+        'west' : 'living room',
+        'east' : 'front yard'
     },
-    'Front Yard' : {
-        'west'  : 'Front Door',
-        'east' : 'Road'
+    'front yard' : {
+        'west'  : 'front door',
+        'east' : 'north road'
+    },
+    'north road' : {
+        'west' : 'front yard',
+        'south' : 'sewer cap'
+    },
+    'sewer cap' : {
+        'down' : 'sewers',
+        'enter' : 'sewers',
+        'north' : 'north road',
+        'south' : 'south road'
+    },
+    'sewers' : {
+        'up' : 'sewer cap',
+        'exit' : 'sewer cap',
+        'east' : 'tunnel'
+    },
+    'tunnel' : {
+        'west' : 'sewers'
     }
 }
-
-currentRoom = 'Kitchen'
-
+usedRooms = {"kitchen"}
+currentRoom = 'kitchen'
 showInstructions()
 
 while True:
@@ -60,12 +80,27 @@ while True:
         move = input('> ')
     move = move.lower().split()
 
+    #if they type 'teleport' first
+    if move[0] == 'teleport':
+        #check that they are allowed wherever they want to go
+        newRoom = " ".join(move[1:])
+        if newRoom in usedRooms:
+            #set the current room to the new room
+            currentRoom = newRoom
+        #there is no door (link) to the new room
+        else:
+            print('You must explore that room before you can teleport there!')
+
     #if they type 'go' first
     if move[0] == 'go':
         #check that they are allowed wherever they want to go
         if move[1] in rooms[currentRoom]:
             #set the current room to the new room
-            currentRoom = rooms[currentRoom][move[1]]
+            if rooms[currentRoom][move[1]] == "tunnel" and not "shovel" in inventory:
+                print("You can\'t dig without a shovel!")
+            else:
+                currentRoom = rooms[currentRoom][move[1]]
+                usedRooms.add(currentRoom)
         #there is no door (link) to the new room
         else:
             print('You can\'t go that way!')
