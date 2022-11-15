@@ -32,22 +32,31 @@ rooms = {
         'south' : 'sewer cap'
     },
     'sewer cap' : {
-        'down' : 'sewers',
-        'enter' : 'sewers',
+        'in' : 'sewer',
+        'down' : 'sewer',
+        'enter' : 'sewer',
         'north' : 'north road',
         'south' : 'south road'
     },
-    'sewers' : {
+    'sewer' : {
         'up' : 'sewer cap',
         'exit' : 'sewer cap',
         'east' : 'tunnel'
     },
     'tunnel' : {
-        'west' : 'sewers',
+        'west' : 'sewer',
         'east' : 'fork factory'
     },
     'fork factory' : {
         'west' : 'tunnel',
-        'east' : 'road'
+        'east' : 'factory road'
+    },
+    'factory road' : {
+        'west' : 'fork factory',
+        'east' : 'metal factory'
+    },
+    'metal factory' : {
+        'west' : 'factory road',
+        'item' : 'metal'
     }
 }
