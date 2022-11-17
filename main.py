@@ -61,6 +61,19 @@ while True:
         else:
             #tell them they can't get it
             print('Can\'t get ' + move[1] + '!')
-    if currentRoom == 'fork factory' and 'metal' in inventory:
-        win()
-        break
+    if move[0] == 'use' :
+        #if the if the item is in the inventory
+        if move[1] in inventory:
+            if currentRoom == 'fork factory' and move[1] == 'metal':
+                #display a helpful message
+                print(move[1] + ' used!')
+                #delete the item from the inventory
+                inventory.remove(move[1])
+                #if item is metal, win the game
+                if move[1] == 'metal':
+                    win()
+                    break
+        #otherwise, if the item isn't there to get
+        else:
+            #tell them they can't get it
+            print('Can\'t use ' + move[1] + '!')
