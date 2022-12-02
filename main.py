@@ -1,4 +1,4 @@
-from turn import showStatus
+from turn import showStatus, map
 from win import win
 from data import usedRooms, inventory, rooms
 from start import showInstructions
@@ -46,7 +46,8 @@ while True:
         #there is no door (link) to the new room
         else:
             print('You can\'t go that way!')
-
+    if move[0] == 'map':
+        map()
     #if they type 'get' first
     if move[0] == 'get' :
         #if the room contains an item, and the item is the one they want to get

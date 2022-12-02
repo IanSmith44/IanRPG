@@ -12,3 +12,18 @@ def showStatus(currentRoom):
     if "item" in rooms[currentRoom]:
         print('You see a ' + rooms[currentRoom]['item'])
     print("---------------------------")
+def map():
+    print('''
+                    [Garage]
+                       |
+    [Kitchen] - [Living Room] - [Front Door] -[Front Yard] - [Northern Road]
+                       |                                            |
+                    [Stairs]                                   [Sewer Cap] ~~ [Sewers]
+                                                                    |            |
+                                                                  [Road]      [Tunnel]
+                                                                    |            |
+                                                                 [Store]   [Fork Factory]
+                                                                    |            |
+                                                               [Fork Aisle]    [Road]
+                                                                                 |
+                                                                           [Metal Factory]''')
