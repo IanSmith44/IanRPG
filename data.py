@@ -58,5 +58,16 @@ rooms = {
     'metal factory' : {
         'west' : 'factory road',
         'item' : 'metal'
+    },
+    'south road' : {
+        'north' : 'sewer cap',
+        'south' : 'store'
+    },
+    'store' : {
+        'north' : 'south road',
+        'south' : 'fork aisle'
+    },
+    'fork aisle' : {
+        'north' : 'store'
     }
 }
