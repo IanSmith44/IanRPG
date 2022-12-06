@@ -14,16 +14,16 @@ def showStatus(currentRoom):
     print("---------------------------")
 def map():
     print('''
-                    [Garage]
-                       |
-    [Kitchen] - [Living Room] - [Front Door] -[Front Yard] - [Northern Road]
-                       |                                            |
-                    [Stairs]                                   [Sewer Cap] ~~ [Sewers]
-                                                                    |            |
-                                                                  [Road]      [Tunnel]
-                                                                    |            |
-                                                                 [Store]   [Fork Factory]
-                                                                    |            |
-                                                               [Fork Aisle]    [Road]
-                                                                                 |
-                                                                           [Metal Factory]''')
+                     [Garage]
+                        |
+    [Kitchen] -- [Living Room] -- [Front Door] -- [Front Yard] -- [Northern Road]
+                        |                                                |
+                     [Stairs]                                       [Sewer Cap] ~~~~ [Sewers]
+                                                                        |              |
+                                                                      [Road]        [Tunnel]
+                                                                        |              |
+                                                                     [Store]     [Fork Factory]
+                                                                        |              |
+                                                                   [Fork Aisle]      [Road]
+                                                                                       |
+                                                                                 [Metal Factory]''')
